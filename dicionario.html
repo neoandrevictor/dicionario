@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dicionario</title>
+    <script src="palavrasA.js"></script>
+    <script src="palavrasB.js"></script>
+    <script src="palavrasC.js"></script>
+    <script src="palavrasD.js"></script>
+    <script src="palavrasE.js"></script>
+    <script src="palavrasF.js"></script>
+    <script src="palavrasG.js"></script>
+    <script src="palavrasGeo.js"></script>
+    <script src="palavrasH.js"></script>
+    <script src="palavrasJ.js"></script>
+    <script src="palavrasK.js"></script>
+    <script src="palavrasL.js"></script>
+    <script src="palavrasM.js"></script>
+    <script src="palavrasN.js"></script>
+    <script src="palavrasNames.js"></script>
+    <script src="palavrasO.js"></script>
+    <script src="palavrasP.js"></script>
+    <script src="palavrasQ.js"></script>
+    <script src="palavrasR.js"></script>
+    <script src="palavrasS.js"></script>
+    <script src="palavrasT.js"></script>
+    <script src="palavrasU.js"></script>
+    <script src="palavrasV.js"></script>
+    <script src="palavrasW.js"></script>
+    <script src="palavrasX.js"></script>
+    <script src="palavrasY.js"></script>
+    <script src="palavrasZ.js"></script>
+    <script>
+
+
+
+        function buscar(palavra) {
+
+            if (palavra == "") {
+                return;
+            }
+
+            document.getElementById("significado").innerHTML = "";
+            switch (palavra[0].toLowerCase()) {
+                case "a":
+                    dicionario = palavrasA;
+                    break;
+
+                case "b":
+                    dicionario = palavrasB;
+                    break;
+
+                case "c":
+                    dicionario = palavrasC;
+                    break;
+
+                case "d":
+                    dicionario = palavrasD;
+                    break;
+
+                case "e":
+                    dicionario = palavrasE;
+                    break;
+
+                case "f":
+                    dicionario = palavrasF;
+                    break;
+
+                case "g":
+                    dicionario = palavrasG;
+                    break;
+
+                case "h":
+                    dicionario = palavrasH;
+                    break;
+
+                case "i":
+                    dicionario = palavrasI;
+                    break;
+
+                case "j":
+                    dicionario = palavrasJ;
+                    break;
+
+                case "k":
+                    dicionario = palavrasK;
+                    break;
+
+                case "l":
+                    dicionario = palavrasL;
+                    break;
+
+                case "m":
+                    dicionario = palavrasM;
+                    break;
+
+                case "n":
+                    dicionario = palavrasN;
+                    break;
+
+                case "o":
+                    dicionario = palavrasO;
+                    break;
+
+                case "p":
+                    dicionario = palavrasP;
+                    break;
+
+                case "q":
+                    dicionario = palavrasQ;
+                    break;
+
+                case "r":
+                    dicionario = palavrasR;
+                    break;
+
+                case "s":
+                    dicionario = palavrasS;
+                    break;
+
+                case "t":
+                    dicionario = palavrasT;
+                    break;
+
+                case "u":
+                    dicionario = palavrasU;
+                    break;
+
+                case "v":
+                    dicionario = palavrasV;
+                    break;
+
+                case "w":
+                    dicionario = palavrasW;
+                    break;
+
+                case "x":
+                    dicionario = palavrasX;
+                    break;
+
+                case "y":
+                    dicionario = palavrasY;
+                    break;
+
+                case "z":
+                    dicionario = palavrasZ;
+                    break;
+
+
+
+            }
+
+            for (let k = 0; k < dicionario.dic.entry.length; k++) {
+                if (dicionario.dic.entry[k].id.toLowerCase() == palavra.toLowerCase()) {
+                    escreveSignificado(dicionario.dic.entry[k], k, dicionario.dic.head);
+                    document.getElementById("palavra").innerText = palavra;
+                }
+            }
+
+            for (let k = 0; k < palavrasGeo.dic.entry.length; k++) {
+                if (palavrasGeo.dic.entry[k].id.toLowerCase() == palavra.toLowerCase()) {
+                    escreveSignificado(dicionario.dic.entry[k], k, dicionario.dic.head);
+                    document.getElementById("palavra").innerText = palavra;
+                }
+            }
+
+            for (let k = 0; k < palavrasNames.dic.entry.length; k++) {
+                if (palavrasNames.dic.entry[k].id.toLowerCase() == palavra.toLowerCase()) {
+                    escreveSignificado(dicionario.dic.entry[k], k, dicionario.dic.head);
+                    document.getElementById("palavra").innerText = palavra;
+                }
+            }
+
+
+        }
+
+        function escreveSignificado(entrada, id, dicionario) {
+
+            if (entrada.sense.length == undefined) {
+                let elemento = document.createElement("p");
+                var def = entrada.sense.def;
+                elemento.innerText = "Dicionario: " + dicionario + " ID:" + id + " Significado:" + def;
+                document.getElementById("significado").appendChild(elemento);
+            } else {
+                for (let k = 0; k < entrada.sense.length; k++) {
+                    let elemento = document.createElement("p");
+                    if (typeof(entrada.sense[k].def) == "object") {
+
+                    } else {
+                        var def = entrada.sense[k].def;
+                        elemento.innerText = "Dicionario: " + dicionario + " ID:" + id + " Significado:" + def;
+                        document.getElementById("significado").appendChild(elemento);
+                    }
+                }
+
+            }
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+    <input oninput="buscar(this.value)" placeholder="Digite aqui a palavra que quer saber o significado">
+    <h1 id="palavra"></h1>
+    <div id="significado"></div>
+</body>
+
+</html>
