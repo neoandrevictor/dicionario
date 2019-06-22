@@ -154,21 +154,36 @@
             }
 
             for (let k = 0; k < dicionario.dic.entry.length; k++) {
-                if (dicionario.dic.entry[k].id.toLowerCase() == palavra.toLowerCase()) {
+                if (dicionario.dic.entry[k].id.indexOf(":") > 0) {
+                    dicionarioPalavra = dicionario.dic.entry[k].id.substring(0, dicionario.dic.entry[k].id.indexOf(":")).toLowerCase();
+                } else {
+                    dicionarioPalavra = dicionario.dic.entry[k].id.toLowerCase();
+                }
+                if (dicionarioPalavra == palavra.toLowerCase()) {
                     escreveSignificado(dicionario.dic.entry[k], k, dicionario.dic.head);
                     document.getElementById("palavra").innerText = palavra;
                 }
             }
 
             for (let k = 0; k < palavrasGeo.dic.entry.length; k++) {
-                if (palavrasGeo.dic.entry[k].id.toLowerCase() == palavra.toLowerCase()) {
+                if (dicionario.dic.entry[k].id.indexOf(":") > 0) {
+                    dicionarioPalavra = dicionario.dic.entry[k].id.substring(0, dicionario.dic.entry[k].id.indexOf(":")).toLowerCase();
+                } else {
+                    dicionarioPalavra = dicionario.dic.entry[k].id.toLowerCase();
+                }
+                if (dicionarioPalavra == palavra.toLowerCase()) {
                     escreveSignificado(dicionario.dic.entry[k], k, dicionario.dic.head);
                     document.getElementById("palavra").innerText = palavra;
                 }
             }
 
             for (let k = 0; k < palavrasNames.dic.entry.length; k++) {
-                if (palavrasNames.dic.entry[k].id.toLowerCase() == palavra.toLowerCase()) {
+                if (dicionario.dic.entry[k].id.indexOf(":") > 0) {
+                    dicionarioPalavra = dicionario.dic.entry[k].id.substring(0, dicionario.dic.entry[k].id.indexOf(":")).toLowerCase();
+                } else {
+                    dicionarioPalavra = dicionario.dic.entry[k].id.toLowerCase();
+                }
+                if (dicionarioPalavra == palavra.toLowerCase()) {
                     escreveSignificado(dicionario.dic.entry[k], k, dicionario.dic.head);
                     document.getElementById("palavra").innerText = palavra;
                 }
@@ -182,12 +197,17 @@
             if (entrada.sense.length == undefined) {
                 let elemento = document.createElement("p");
                 var def = entrada.sense.def;
-                elemento.innerText = "Dicionario: " + dicionario + " ID:" + id + " Significado:" + def;
-                document.getElementById("significado").appendChild(elemento);
+                if (typeof (def) == "object") {
+
+                } else {
+                    elemento.innerText = "Dicionario: " + dicionario + " ID:" + id + " Significado:" + def;
+                    document.getElementById("significado").appendChild(elemento);
+                }
+
             } else {
                 for (let k = 0; k < entrada.sense.length; k++) {
                     let elemento = document.createElement("p");
-                    if (typeof(entrada.sense[k].def) == "object") {
+                    if (typeof (entrada.sense[k].def) == "object") {
 
                     } else {
                         var def = entrada.sense[k].def;
